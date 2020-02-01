@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 using OnThisDay.Models;
 using OnThisDay.Models.json;
@@ -23,30 +24,40 @@ namespace OnThisDay.ViewModels.TodayOverview
             set { Set(() => TodayEventViewModels, ref _todayEventViewModels, value); }
         }
 
+        public RelayCommand LoadEventsCommand { get; set; }
+
         public TodayOverviewViewModel()
         {
             Title = "Hi, From Master VM!";
 
-            LoadEvents();
+            RegisterCommands();
 
+        }
+
+        private void RegisterCommands()
+        {
+            LoadEventsCommand = new RelayCommand(() =>
+            {
+                LoadEvents();
+            });
         }
 
         private void LoadEvents()
         {
-            using (StreamReader reader = File.OpenText(DATA_FILE))
-            {
-                string json = reader.ReadToEnd();
-                var deserializedJsonEvents = JsonConvert.DeserializeObject<RootObject>(json);
-                foreach (var todayEvent in deserializedJsonEvents.Events)
+                using (StreamReader reader = File.OpenText(DATA_FILE))
                 {
-                    _todayEventViewModels.Add(
-                        new TodayEventViewModel()
-                        {
-                            Name = todayEvent.Name,
-                            Description = todayEvent.Description
-                        });
+                    string json = reader.ReadToEnd();
+                    var deserializedJsonEvents = JsonConvert.DeserializeObject<RootObject>(json);
+                    foreach (var todayEvent in deserializedJsonEvents.Events)
+                    {
+                       _todayEventViewModels.Add(
+                            new TodayEventViewModel()
+                            {
+                                Name = todayEvent.Name,
+                                Description = todayEvent.Description
+                            });
+                    }
                 }
-            }
         }
     }
 }
