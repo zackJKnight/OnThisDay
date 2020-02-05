@@ -14,11 +14,27 @@ namespace OnThisDay.ViewModels.TodayEventDetail
     {
         public bool IsVisible { get; set; }
 
-        public string Description { get; set; }
+        public string Name
+        {
+            get { return _name; }
+            set { Set(() => Name, ref _name, value); }
+        }
+        public string Description {
+            get { return _description; }
+            set { Set(() => Description, ref _description, value); }
+        }
+        public string Detail
+        {
+            get { return _detail; }
+            set { Set(() => Detail, ref _detail, value); }
+        }
 
         private IDataProvider _todayEventDataProvider;
 
         private TodayEventViewModel _selectedEvent;
+        private string _description;
+        private string _detail;
+        private string _name;
 
         public TodayEventViewModel SelectedEvent
         {
@@ -40,9 +56,9 @@ namespace OnThisDay.ViewModels.TodayEventDetail
             Messenger.Default.Register<ShowEventDetailMessage>(this, async e =>
             {
                 var selectedTodayEvent = await _todayEventDataProvider.GetTodayEventByName(e.Name);
-                SelectedEvent.Name = selectedTodayEvent.Name;
+                Name = selectedTodayEvent.Name;
                 Description = selectedTodayEvent.Description;
-                SelectedEvent.Detail = selectedTodayEvent.Detail;
+                Detail = selectedTodayEvent.Detail;
                 IsVisible = true;
             });
         }

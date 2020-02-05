@@ -26,11 +26,14 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Column="1" Grid.Row="1" FontSize="14"
+        <TextBlock Text="{Binding Name, Mode=OneWay}" Grid.Column="1" Grid.Row="1" FontSize="14"
                        Foreground="#3c4c55" />
-        <TextBlock Text="{Binding Detail, Mode=OneWay}" Grid.Column="2" Grid.Row="2" FontSize="14"
+        <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Column="1" Grid.Row="2" FontSize="14"
+                       Foreground="#3c4c55" />
+        <TextBlock Text="{Binding Detail, Mode=OneWay}" Grid.Column="2" Grid.Row="3" FontSize="14"
                        Foreground="#3c4c55" />
     </Grid>
 </UserControl>

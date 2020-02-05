@@ -19,8 +19,13 @@ namespace OnThisDay.ViewModels.TodayOverview
     {
         private ObservableCollection<TodayEventViewModel> _todayEventViewModels = new ObservableCollection<TodayEventViewModel>();
 
-        private IDataProvider _fileEventDataProvider; 
-        public string Title { get; set; }
+        private IDataProvider _fileEventDataProvider;
+        private string _title;
+
+        public string Title {
+            get { return _title; }
+            set { Set(() => Title, ref _title, value); }
+        }
         public ObservableCollection<TodayEventViewModel> TodayEventViewModels
         {
             get { return _todayEventViewModels; }
@@ -31,7 +36,7 @@ namespace OnThisDay.ViewModels.TodayOverview
 
         public TodayOverviewViewModel()
         {
-            Title = "Hi, From Master VM!";
+            Title = "Hi, From the Master View Model!";
             _fileEventDataProvider = new TodayEventDataProvider();
             RegisterCommands();
         }
