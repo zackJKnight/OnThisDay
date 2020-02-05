@@ -1,8 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Newtonsoft.Json;
+using OnThisDay.Messaging;
 using OnThisDay.Models;
 using OnThisDay.Models.json;
+using OnThisDay.Providers;
 using OnThisDay.ViewModels.TodayEvent;
 using System;
 using System.Collections.Generic;
@@ -14,9 +17,9 @@ namespace OnThisDay.ViewModels.TodayOverview
 {
     public class TodayOverviewViewModel : ViewModelBase
     {
-        private const string DATA_FILE = @"./Resources/MockEvents.json";
         private ObservableCollection<TodayEventViewModel> _todayEventViewModels = new ObservableCollection<TodayEventViewModel>();
 
+        private IDataProvider _fileEventDataProvider; 
         public string Title { get; set; }
         public ObservableCollection<TodayEventViewModel> TodayEventViewModels
         {
@@ -29,9 +32,8 @@ namespace OnThisDay.ViewModels.TodayOverview
         public TodayOverviewViewModel()
         {
             Title = "Hi, From Master VM!";
-
+            _fileEventDataProvider = new TodayEventDataProvider();
             RegisterCommands();
-
         }
 
         private void RegisterCommands()
@@ -40,24 +42,20 @@ namespace OnThisDay.ViewModels.TodayOverview
             {
                 LoadEvents();
             });
+
         }
 
-        private void LoadEvents()
+        private async void LoadEvents()
         {
-                using (StreamReader reader = File.OpenText(DATA_FILE))
+            foreach (var todayEvent in await _fileEventDataProvider.GetEventsFromFileAsync())
+            {
+                TodayEventViewModels.Add(new TodayEventViewModel()
                 {
-                    string json = reader.ReadToEnd();
-                    var deserializedJsonEvents = JsonConvert.DeserializeObject<RootObject>(json);
-                    foreach (var todayEvent in deserializedJsonEvents.Events)
-                    {
-                       _todayEventViewModels.Add(
-                            new TodayEventViewModel()
-                            {
-                                Name = todayEvent.Name,
-                                Description = todayEvent.Description
-                            });
-                    }
-                }
+                    Name = todayEvent.Name,
+                    Description = todayEvent.Description,
+                    Detail = todayEvent.Detail
+                });
+            }
         }
     }
 }

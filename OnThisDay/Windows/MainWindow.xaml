@@ -6,6 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:OnThisDay"
         xmlns:todayOverview="clr-namespace:OnThisDay.UserControls.TodayOverview"
+        xmlns:todayEventDetail="clr-namespace:OnThisDay.UserControls.TodayEventDetail"
         mc:Ignorable="d"
         Title="On This Day" Height="450" Width="800">
     <Grid>
@@ -13,10 +14,18 @@
             <ColumnDefinition Width="20"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="20"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <todayOverview:TodayOverviewUserControl Grid.Column="1" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <todayOverview:TodayOverviewUserControl Grid.Column="1" Grid.Row="1" />
+        <todayEventDetail:TodayEventDetailUserControl Grid.Column="3" Grid.Row="2" />
     </Grid>
 
 </Controls:MetroWindow>

@@ -1,5 +1,6 @@
 ﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
+using OnThisDay.Providers;
 using OnThisDay.ViewModels.TodayEvent;
 using OnThisDay.ViewModels.TodayEventDetail;
 using OnThisDay.ViewModels.TodayOverview;
@@ -11,6 +12,8 @@ namespace OnThisDay.ViewModels
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            SimpleIoc.Default.Register(() => new TodayEventDataProvider());
+            SimpleIoc.Default.Register<IDataProvider, TodayEventDataProvider>();
             SimpleIoc.Default.Register(() => new TodayEventViewModel());
             SimpleIoc.Default.Register(() => new TodayEventDetailViewModel());
             SimpleIoc.Default.Register(() => new TodayOverviewViewModel());

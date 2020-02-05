@@ -6,15 +6,19 @@
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="OnThisDay.UserControls.TodayEvent.TodayEventUserControl">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="{Binding Name}" Grid.Column="0"/>
-        <TextBlock Text=" - " Grid.Column="1"/>
-        <TextBlock Text="{Binding Description}" Grid.Column="2"/>
-    </Grid>
+    <Button Command="{Binding ShowSelectedEventCommand}" CommandParameter="{Binding Name}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="{Binding Name}" Grid.Column="0"/>
+            <TextBlock Text=" - " Grid.Column="1"/>
+            <TextBlock Text="{Binding Description}" Grid.Column="2"/>
+
+        </Grid>
+    </Button>
 </UserControl>
 

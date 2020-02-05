@@ -14,6 +14,6 @@ namespace OnThisDay.Models.json
         public string Description { get; set; }
         [JsonProperty("detail")]
         public string Detail { get; set; }
-        //public DateTime Date { get; set; }
+
     }
 }
