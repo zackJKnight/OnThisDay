@@ -7,11 +7,11 @@ namespace OnThisDay.Messaging
 {
     public class ShowEventDetailMessage : MessageBase
     {
-        public string Name;
-
         public ShowEventDetailMessage(string name)
         {
             Name = name;
         }
+
+        public string Name { get; set; }
     }
 }

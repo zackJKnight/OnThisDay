@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OnThisDay.UserControls.TodayEvent
+﻿namespace OnThisDay.UserControls.TodayEventItem
 {
     public partial class TodayEventUserControl
     {

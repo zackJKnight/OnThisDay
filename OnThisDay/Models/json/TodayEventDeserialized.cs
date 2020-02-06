@@ -6,6 +6,7 @@ using System.Text;
 
 namespace OnThisDay.Models.json
 {
+    [JsonObject("todayevendeserialized")]
     public class TodayEventDeserialized : ObservableObject
     {
         [JsonProperty("name")]

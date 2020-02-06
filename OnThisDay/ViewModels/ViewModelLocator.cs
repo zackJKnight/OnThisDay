@@ -1,8 +1,8 @@
 ﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
 using OnThisDay.Providers;
-using OnThisDay.ViewModels.TodayEvent;
 using OnThisDay.ViewModels.TodayEventDetail;
+using OnThisDay.ViewModels.TodayEventItem;
 using OnThisDay.ViewModels.TodayOverview;
 
 namespace OnThisDay.ViewModels

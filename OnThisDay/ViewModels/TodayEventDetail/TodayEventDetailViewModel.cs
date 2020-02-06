@@ -2,11 +2,6 @@
 using GalaSoft.MvvmLight.Messaging;
 using OnThisDay.Messaging;
 using OnThisDay.Providers;
-using OnThisDay.ViewModels.TodayEvent;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 
 namespace OnThisDay.ViewModels.TodayEventDetail
 {
@@ -29,33 +24,25 @@ namespace OnThisDay.ViewModels.TodayEventDetail
             set { Set(() => Detail, ref _detail, value); }
         }
 
-        private IDataProvider _todayEventDataProvider;
+        public IDataProvider TodayEventDataProvider { get; }
 
-        private TodayEventViewModel _selectedEvent;
         private string _description;
         private string _detail;
         private string _name;
 
-        public TodayEventViewModel SelectedEvent
-        {
-            get { return _selectedEvent; }
-            set { Set(() => _selectedEvent, ref _selectedEvent, value); }
-        }
-
         public TodayEventDetailViewModel()
         {
             Description = string.Empty;
-            SelectedEvent = new TodayEventViewModel();
 
-            _todayEventDataProvider = new TodayEventDataProvider();
+            TodayEventDataProvider = new TodayEventDataProvider();
             RegisterMessages();
         }
 
-        private async void RegisterMessages()
+        private void RegisterMessages()
         {
             Messenger.Default.Register<ShowEventDetailMessage>(this, async e =>
             {
-                var selectedTodayEvent = await _todayEventDataProvider.GetTodayEventByName(e.Name);
+                var selectedTodayEvent = await TodayEventDataProvider.GetTodayEventByName(e.Name).ConfigureAwait(false);
                 Name = selectedTodayEvent.Name;
                 Description = selectedTodayEvent.Description;
                 Detail = selectedTodayEvent.Detail;

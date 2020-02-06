@@ -4,7 +4,7 @@ using OnThisDay.Models.json;
 
 namespace OnThisDay.ViewModels.TodayOverview
 {
-    internal class RootEventCollection : ObservableObject
+    internal class RootEventCollection
     {
         [JsonProperty(PropertyName = "Events")]
         public TodayEventDeserialized[] Events { get; set; }

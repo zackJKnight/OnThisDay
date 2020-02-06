@@ -19,13 +19,13 @@
             <ColumnDefinition Width="20"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <todayOverview:TodayOverviewUserControl Grid.Column="1" Grid.Row="1" />
-        <todayEventDetail:TodayEventDetailUserControl Grid.Column="3" Grid.Row="2" />
+        <todayEventDetail:TodayEventDetailUserControl Grid.Column="2" Grid.Row="1" />
     </Grid>
 
 </Controls:MetroWindow>

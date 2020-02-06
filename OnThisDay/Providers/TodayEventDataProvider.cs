@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OnThisDay.Models;
+using OnThisDay.Models.json;
 using OnThisDay.ViewModels.TodayOverview;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace OnThisDay.Providers
     {
         private const string DATA_FILE = @"./Resources/MockEvents.json";
 
-        public List<TodayEvent> TodayEvents { get; set; }
+        public List<TodayEvent> TodayEvents { get; }
 
         public TodayEventDataProvider()
         {
@@ -23,7 +24,7 @@ namespace OnThisDay.Providers
 
         public async Task<TodayEvent> GetTodayEventByName(string name)
         {
-            if(!TodayEvents.Any())
+            if (!TodayEvents.Any())
             {
                 await GetEventsFromFileAsync().ConfigureAwait(false);
             }
@@ -39,7 +40,7 @@ namespace OnThisDay.Providers
                      string json = reader.ReadToEnd();
                      return JsonConvert.DeserializeObject<RootEventCollection>(json);
                  }
-             });
+             }).ConfigureAwait(false);
 
             foreach (var deserializedEvent in deserializedJsonEvents.Events)
             {

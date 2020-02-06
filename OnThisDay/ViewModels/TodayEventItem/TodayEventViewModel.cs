@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnThisDay.ViewModels.TodayEvent
+namespace OnThisDay.ViewModels.TodayEventItem
 {
     public class TodayEventViewModel : ViewModelBase
     {

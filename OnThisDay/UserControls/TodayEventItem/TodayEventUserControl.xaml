@@ -5,18 +5,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="OnThisDay.UserControls.TodayEvent.TodayEventUserControl">
-    <Button Command="{Binding ShowSelectedEventCommand}" CommandParameter="{Binding Name}">
+             x:Class="OnThisDay.UserControls.TodayEventItem.TodayEventUserControl">
+    <Button Command="{Binding ShowSelectedEventCommand}" 
+            CommandParameter="{Binding Name}"
+            HorizontalContentAlignment="Left"
+            Background="WhiteSmoke">
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="{Binding Name}" Grid.Column="0"/>
-            <TextBlock Text=" - " Grid.Column="1"/>
-            <TextBlock Text="{Binding Description}" Grid.Column="2"/>
+            <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" Margin="3" Grid.Column="0"/>
+            <TextBlock Text=" - " HorizontalAlignment="Left" Grid.Column="1" Margin="3"/>
+            <TextBlock Text="{Binding Description}" HorizontalAlignment="Left" Margin="3" Grid.Column="2"/>
 
         </Grid>
     </Button>

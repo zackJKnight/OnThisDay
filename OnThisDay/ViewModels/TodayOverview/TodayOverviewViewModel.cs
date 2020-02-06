@@ -1,17 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using Newtonsoft.Json;
-using OnThisDay.Messaging;
-using OnThisDay.Models;
-using OnThisDay.Models.json;
 using OnThisDay.Providers;
-using OnThisDay.ViewModels.TodayEvent;
+using OnThisDay.ViewModels.TodayEventItem;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Text;
 
 namespace OnThisDay.ViewModels.TodayOverview
 {
@@ -29,14 +21,14 @@ namespace OnThisDay.ViewModels.TodayOverview
         public ObservableCollection<TodayEventViewModel> TodayEventViewModels
         {
             get { return _todayEventViewModels; }
-            set { Set(() => TodayEventViewModels, ref _todayEventViewModels, value); }
+            private set { Set(() => TodayEventViewModels, ref _todayEventViewModels, value); }
         }
 
         public RelayCommand LoadEventsCommand { get; set; }
 
         public TodayOverviewViewModel()
         {
-            Title = "Hi, From the Master View Model!";
+            Title = "Choose an Event From This Day in History";
             _fileEventDataProvider = new TodayEventDataProvider();
             RegisterCommands();
         }
@@ -52,13 +44,16 @@ namespace OnThisDay.ViewModels.TodayOverview
 
         private async void LoadEvents()
         {
-            foreach (var todayEvent in await _fileEventDataProvider.GetEventsFromFileAsync())
+            foreach (var todayEvent in await _fileEventDataProvider.GetEventsFromFileAsync().ConfigureAwait(false))
             {
-                TodayEventViewModels.Add(new TodayEventViewModel()
+                App.Current.Dispatcher.Invoke((Action)delegate
                 {
-                    Name = todayEvent.Name,
-                    Description = todayEvent.Description,
-                    Detail = todayEvent.Detail
+                    TodayEventViewModels.Add(new TodayEventViewModel()
+                    {
+                        Name = todayEvent.Name,
+                        Description = todayEvent.Description,
+                        Detail = todayEvent.Detail
+                    });
                 });
             }
         }
