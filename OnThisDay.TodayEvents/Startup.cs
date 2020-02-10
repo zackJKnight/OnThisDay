@@ -34,4 +34,3 @@ namespace OnThisDay.TodayEvents
         }
     }
 }
-}

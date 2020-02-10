@@ -6,7 +6,9 @@ namespace OnThisDay.TodayEventData.Models
 {
     public class TodaysEvents
     {
-        List<TodayEvent> TodayEvents { get; set; }
+        public int Id { get; set; }
+        public Guid TodaysEventsId { get; set; }
+        public List<TodayEvent> TodayEvents { get; set; }
 
     }
 }

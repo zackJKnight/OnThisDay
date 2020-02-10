@@ -10,16 +10,13 @@ namespace OnThisDay.TodayEvents.Protos
         {
             if (source is null) return null;
 
-            var target = new TodayEvent
+            return new TodayEvent
             {
-
+                Id = source.Id,
                 Name = source.Name,
                 Description = source.Description,
+                Details = source.Details
             };
-
-            target.TodayEvents.AddRange(source.TodayEvents.Select(TodayEventItem.FromRepositoryModel));
-
-            return target;
         }
     }
 }
