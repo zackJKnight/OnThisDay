@@ -15,7 +15,7 @@ namespace OnThisDay.TodayEvents.Protos
             var target = new TodaysEvents
             {
                 Id = source.Id,
-                TodaysEventsId = source.TodaysEventsId
+                TodaysEventsId = source.TodaysEventsId.ToString() //,
                 //TodayEvents.AddRange(source.TodayEvents);
             };
 

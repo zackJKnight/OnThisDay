@@ -9,7 +9,7 @@ namespace OnThisDay.TodayEventData.Models
     {
         Task<TodayEvent> GetTodayEventByNameAsync(string name);
 
-        Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync();
+        Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync(string todaysEventsIds);
 
     }
 }

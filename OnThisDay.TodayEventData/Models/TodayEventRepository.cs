@@ -11,7 +11,7 @@ namespace OnThisDay.TodayEventData.Models
     public class TodayEventRepository : ITodayEventRepository
     {
         private const string DATA_FILE = @"./Resources/MockEvents.json";
-
+        private const string TODAYS_EVENTS_ID = "e317e7a4-2afd-4859-b2cc-da707a726e66";
         public List<TodayEvent> TodayEvents { get; }
 
         public TodayEventRepository()
@@ -22,12 +22,12 @@ namespace OnThisDay.TodayEventData.Models
         {
             if (!TodayEvents.Any())
             {
-                await GetEventsFromFileAsync().ConfigureAwait(false);
+                await GetEventsFromFileAsync(TODAYS_EVENTS_ID).ConfigureAwait(false);
             }
             return TodayEvents.Where(todayEvent => todayEvent.Name == name).FirstOrDefault();
         }
 
-        public async Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync()
+        public async Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync(string todaysEventsId)
         {
             var deserializedJsonEvents = await Task.Run(() =>
             {

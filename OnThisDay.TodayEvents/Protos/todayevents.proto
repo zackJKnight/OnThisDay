@@ -17,23 +17,14 @@ message TodaysEvents {
     repeated TodayEvent todayEvents = 3;
 }
 
-message GetRequest {
-    string todayEventName;
-}
-
-message GetResponse {
-    TodayEvent todayEvent = 1;
-}
-
 message GetAllRequest {
     string todaysEventsId = 1;
 }
 
 message GetAllResponse {
-    repeated TodaysEvents todayEvents = 1;
+    repeated TodayEvent todayEvents = 1;
 }
 
 service TodayEvents {
-    rpc Get(GetRequest) returns (GetResponse);
     rpc GetAll(GetAllRequest) returns (GetAllResponse);
 }
