@@ -7,7 +7,7 @@ using System;
 using System.Collections.ObjectModel;
 using Grpc.Core;
 using Grpc.Net.Client;
-using OnThisDay.TodayEvents;
+using OnThisDay.TodayEvents.Protos;
 
 namespace OnThisDay.ViewModels.TodayOverview
 {
@@ -52,16 +52,16 @@ namespace OnThisDay.ViewModels.TodayOverview
             string TODAYS_EVENTS_ID = "e317e7a4-2afd-4859-b2cc-da707a726e66";
 
         var channel = GrpcChannel.ForAddress(ServerAddress);
-            var todayEvents = new TodayEvents.Protos.Today.TodayEventClient(channel);
+            var todayEvents = new TodayEvents.Protos.Today.TodayClient(channel);
 
             try
             {
                 var request = new GetAllRequest
                 {
-                    TodaysEventsId = TODAYS_EVENTS_ID
+                    TodayEventListId = TODAYS_EVENTS_ID
                 };
                 var response = await todayEvents.GetAllAsync(request);
-                foreach (var todayEvent in response.TodayEvents)
+                foreach (var todayEvent in response.Today.TodayEvents)
                 {
                     App.Current.Dispatcher.Invoke((Action)delegate
                     {

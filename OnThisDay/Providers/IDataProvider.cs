@@ -6,9 +6,9 @@ namespace OnThisDay.Providers
 {
     public interface IDataProvider
     {
-        Task<TodayEvent> GetTodayEventByName(string name);
+        //Task<TodayEvent> GetTodayEventByName(string name);
 
-        Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync();
+        //Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync();
 
     }
 }

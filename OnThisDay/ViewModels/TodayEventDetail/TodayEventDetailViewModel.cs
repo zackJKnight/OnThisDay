@@ -42,10 +42,10 @@ namespace OnThisDay.ViewModels.TodayEventDetail
         {
             Messenger.Default.Register<ShowEventDetailMessage>(this, async e =>
             {
-                var selectedTodayEvent = await TodayEventDataProvider.GetTodayEventByName(e.Name).ConfigureAwait(false);
-                Name = selectedTodayEvent.Name;
-                Description = selectedTodayEvent.Description;
-                Detail = selectedTodayEvent.Detail;
+                //var selectedTodayEvent = await TodayEventDataProvider.GetTodayEventByName(e.Name).ConfigureAwait(false);
+                //Name = selectedTodayEvent.Name;
+                //Description = selectedTodayEvent.Description;
+                //Detail = selectedTodayEvent.Detail;
                 IsVisible = true;
             });
         }

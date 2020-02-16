@@ -13,47 +13,47 @@ namespace OnThisDay.Providers
 {
     public class TodayEventDataProvider : IDataProvider
     {
-        private const string DATA_FILE = @"./Resources/MockEvents.json";
+        //    private const string DATA_FILE = @"./Resources/MockEvents.json";
 
-        public List<TodayEvent> TodayEvents { get; }
+        //    public List<TodayEvent> TodayEvents { get; }
 
-        public TodayEventDataProvider()
-        {
-            TodayEvents = new List<TodayEvent>();
-        }
+        //    public TodayEventDataProvider()
+        //    {
+        //        TodayEvents = new List<TodayEvent>();
+        //    }
 
-        public async Task<TodayEvent> GetTodayEventByName(string name)
-        {
-            if (!TodayEvents.Any())
-            {
-                await GetEventsFromFileAsync().ConfigureAwait(false);
-            }
-            return TodayEvents.Where(todayEvent => todayEvent.Name == name).FirstOrDefault();
-        }
+        //    public async Task<TodayEvent> GetTodayEventByName(string name)
+        //    {
+        //        if (!TodayEvents.Any())
+        //        {
+        //            await GetEventsFromFileAsync().ConfigureAwait(false);
+        //        }
+        //        return TodayEvents.Where(todayEvent => todayEvent.Name == name).FirstOrDefault();
+        //    }
 
-        public async Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync()
-        {
-            var deserializedJsonEvents = await Task.Run(() =>
-             {
-                 using (StreamReader reader = File.OpenText(DATA_FILE))
-                 {
-                     string json = reader.ReadToEnd();
-                     return JsonConvert.DeserializeObject<RootEventCollection>(json);
-                 }
-             }).ConfigureAwait(false);
+        //    public async Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync()
+        //    {
+        //        var deserializedJsonEvents = await Task.Run(() =>
+        //         {
+        //             using (StreamReader reader = File.OpenText(DATA_FILE))
+        //             {
+        //                 string json = reader.ReadToEnd();
+        //                 return JsonConvert.DeserializeObject<RootEventCollection>(json);
+        //             }
+        //         }).ConfigureAwait(false);
 
-            foreach (var deserializedEvent in deserializedJsonEvents.Events)
-            {
-                TodayEvents.Add(
-                    new TodayEvent()
-                    {
-                        Name = deserializedEvent.Name,
-                        Description = deserializedEvent.Description,
-                        Detail = deserializedEvent.Detail
-                    });
-            }
+        //        foreach (var deserializedEvent in deserializedJsonEvents.Events)
+        //        {
+        //            TodayEvents.Add(
+        //                new TodayEvent()
+        //                {
+        //                    Name = deserializedEvent.Name,
+        //                    Description = deserializedEvent.Description,
+        //                    Detail = deserializedEvent.Detail
+        //                });
+        //        }
 
-            return TodayEvents;
-        }
+        //        return TodayEvents;
+        //    }
     }
 }

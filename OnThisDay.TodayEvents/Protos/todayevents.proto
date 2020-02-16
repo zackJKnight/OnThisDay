@@ -4,6 +4,13 @@ option csharp_namespace = "OnThisDay.TodayEvents.Protos";
 
 package TodayEventService;
 
+message TodayEvent {
+    int32 id = 1;   
+    string name = 2;
+    string description = 3;
+    string details = 4;
+}
+
 message Today {
     int32 id = 1;
     string todayEventListId = 2;
@@ -18,6 +25,6 @@ message GetAllResponse {
     Today today = 1;
 }
 
-service Today {
+service TodayEvents{
     rpc GetAll(GetAllRequest) returns (GetAllResponse);
 }

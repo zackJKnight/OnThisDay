@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OnThisDay.TodayEvents.Services
 {
-    public class TodayEventService : Protos.
+    public class TodayEventService : Protos.TodayEvents.TodayEventsBase
     {
         private readonly ITodayEventRepository _repository;
 
@@ -22,11 +22,10 @@ namespace OnThisDay.TodayEvents.Services
         [Authorize]
         public override async Task<GetAllResponse> GetAll(GetAllRequest request, ServerCallContext context)
         {
-
             var today = await _repository.GetEventsFromFileAsync(request.TodayEventListId);
 
             var response = new GetAllResponse();
-            response.TodayEvents.AddRange(today.TodayEventList.Select(TodayEvent.FromRepositoryModel));
+            response.Today.TodayEvents.AddRange(today.TodayEventList.Select(TodayEvent.FromRepositoryModel));
 
             return response;
         }

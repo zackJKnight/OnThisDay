@@ -13,14 +13,21 @@ namespace OnThisDay.TodayEvents.Protos
             if (source is null) return null;
 
             var target = new Today
+
             {
-             
-                //Id = source.Id,
-                //TodayEventListId = source.TodayEventListId.ToString() //,
-                //TodayEvents.AddRange(source.TodayEvents);
+                Id = source.Id,
+                TodayEventListId = source.TodayEventListId.ToString()
             };
 
-//            target.TodayEvents.AddRange(source.TodayEvents.Select(TodaysEvents.FromRepositoryModel));
+            source.TodayEventList.ToList()
+.ForEach(item => target.TodayEvents.Add(new TodayEvent
+{
+    Id = item.Id,
+    Name = item.Name,
+    Description = item.Description,
+    Details = item.Details
+}))
+;
 
             return target;
         }
