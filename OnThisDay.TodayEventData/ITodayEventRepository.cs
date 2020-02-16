@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using OnThisDay.TodayEventData.Models;
 
-namespace OnThisDay.TodayEventData.Models
+namespace OnThisDay.TodayEventData
 {
     public interface ITodayEventRepository
     {
         Task<TodayEvent> GetTodayEventByNameAsync(string name);
 
-        Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync(string todaysEventsIds);
+        Task<Today> GetEventsFromFileAsync(string todayEventListId);
 
     }
 }

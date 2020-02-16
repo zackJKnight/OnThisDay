@@ -6,16 +6,17 @@ using OnThisDay.TodayEventData.Models;
 
 namespace OnThisDay.TodayEvents.Protos
 {
-    public partial class TodaysEvents
+    public partial class Today
     {
-        public static TodaysEvents FromRepositoryModel(OnThisDay.TodayEventData.Models.TodaysEvents source)
+        public static Today FromRepositoryModel(TodayEventData.Models.Today source)
         {
             if (source is null) return null;
 
-            var target = new TodaysEvents
+            var target = new Today
             {
-                Id = source.Id,
-                TodaysEventsId = source.TodaysEventsId.ToString() //,
+             
+                //Id = source.Id,
+                //TodayEventListId = source.TodayEventListId.ToString() //,
                 //TodayEvents.AddRange(source.TodayEvents);
             };
 

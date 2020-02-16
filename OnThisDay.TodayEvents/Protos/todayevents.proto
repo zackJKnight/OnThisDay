@@ -2,29 +2,22 @@
 
 option csharp_namespace = "OnThisDay.TodayEvents.Protos";
 
-package TodayEventsService;
+package TodayEventService;
 
-message TodayEvent {
+message Today {
     int32 id = 1;
-    string name = 2;
-    string description = 3;
-    string details = 4;
-}
-
-message TodaysEvents {
-    int32 id = 1;
-    string todaysEventsId = 2;
+    string todayEventListId = 2;
     repeated TodayEvent todayEvents = 3;
 }
 
 message GetAllRequest {
-    string todaysEventsId = 1;
+    string todayEventListId = 1;
 }
 
 message GetAllResponse {
-    repeated TodayEvent todayEvents = 1;
+    Today today = 1;
 }
 
-service TodayEvents {
+service Today {
     rpc GetAll(GetAllRequest) returns (GetAllResponse);
 }

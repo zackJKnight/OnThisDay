@@ -5,8 +5,8 @@ using OnThisDay.Models.json;
 
 namespace OnThisDay.Models
 {
-    public class TodayEvent : TodayEventDeserialized
-    {
+    //public class TodayEvent : TodayEventDeserialized
+    //{
 
-    }
+    //}
 }

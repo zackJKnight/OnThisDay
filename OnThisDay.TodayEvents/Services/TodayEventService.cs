@@ -1,6 +1,6 @@
 ﻿using Grpc.Core;
 using Microsoft.AspNetCore.Authorization;
-using OnThisDay.TodayEventData.Models;
+using OnThisDay.TodayEventData;
 using OnThisDay.TodayEvents.Protos;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OnThisDay.TodayEvents.Services
 {
-    public class TodayEventService : Protos.TodayEvents.TodayEventsBase
+    public class TodayEventService : Protos.
     {
         private readonly ITodayEventRepository _repository;
 
@@ -19,30 +19,14 @@ namespace OnThisDay.TodayEvents.Services
             _repository = repository;
         }
 
-        //[Authorize]
-        //public override async Task<GetResponse> Get(GetRequest request, ServerCallContext context)
-        //{
-        //    if (string.IsNullOrEmpty(request.todayEventName)
-        //    {
-        //        throw new RpcException(new Status(StatusCode.InvalidArgument, "Today Event Name must be a valid string."));
-        //    }
-
-        //    var portfolio = await _repository.GetTodayEventByNameAsync(request.todayEventName);
-
-        //    return new GetResponse
-        //    {
-        //        TodaysEvents = Protos.TodaysEvents.FromRepositoryModel(portfolio)
-        //    };
-        //}
-
-            [Authorize]
+        [Authorize]
         public override async Task<GetAllResponse> GetAll(GetAllRequest request, ServerCallContext context)
         {
 
-            var todayEvents = await _repository.GetEventsFromFileAsync(request.TodaysEventsId);
+            var today = await _repository.GetEventsFromFileAsync(request.TodayEventListId);
 
             var response = new GetAllResponse();
-            response.TodayEvents.AddRange(todayEvents.ToList());
+            response.TodayEvents.AddRange(today.TodayEventList.Select(TodayEvent.FromRepositoryModel));
 
             return response;
         }

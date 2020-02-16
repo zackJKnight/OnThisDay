@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OnThisDay.TodayEventData.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,28 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnThisDay.TodayEventData.Models
+namespace OnThisDay.TodayEventData
 {
     public class TodayEventRepository : ITodayEventRepository
     {
         private const string DATA_FILE = @"./Resources/MockEvents.json";
-        private const string TODAYS_EVENTS_ID = "e317e7a4-2afd-4859-b2cc-da707a726e66";
-        public List<TodayEvent> TodayEvents { get; }
+        public Today Today { get; }
 
         public TodayEventRepository()
         {
-            TodayEvents = new List<TodayEvent>();
+            Today = new Today();
         }
         public async Task<TodayEvent> GetTodayEventByNameAsync(string name)
         {
-            if (!TodayEvents.Any())
+            if (!Today.TodayEventList.Any())
             {
-                await GetEventsFromFileAsync(TODAYS_EVENTS_ID).ConfigureAwait(false);
+                await GetEventsFromFileAsync(name).ConfigureAwait(false);
             }
-            return TodayEvents.Where(todayEvent => todayEvent.Name == name).FirstOrDefault();
+            return Today.TodayEventList.Where(todayEvent => todayEvent.Name == name).FirstOrDefault();
         }
 
-        public async Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync(string todaysEventsId)
+        public async Task<Today> GetEventsFromFileAsync(string todayEventListId)
         {
             var deserializedJsonEvents = await Task.Run(() =>
             {
@@ -40,7 +40,7 @@ namespace OnThisDay.TodayEventData.Models
 
             foreach (var deserializedEvent in deserializedJsonEvents.Events)
             {
-                TodayEvents.Add(
+                Today.TodayEventList.Add(
                     new TodayEvent()
                     {
                         Name = deserializedEvent.Name,
@@ -49,7 +49,7 @@ namespace OnThisDay.TodayEventData.Models
                     });
             }
 
-            return TodayEvents;
+            return Today;
         }
     }
 }

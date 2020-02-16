@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using OnThisDay.TodayEventData.Models;
+using OnThisDay.TodayEventData;
 using System;
 using System.Collections.Generic;
 using System.Text;

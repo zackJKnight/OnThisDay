@@ -1,9 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using OnThisDay.Providers;
 using OnThisDay.ViewModels.TodayEventItem;
 using System;
 using System.Collections.ObjectModel;
+using Grpc.Core;
+using Grpc.Net.Client;
+using OnThisDay.TodayEvents;
 
 namespace OnThisDay.ViewModels.TodayOverview
 {
@@ -44,18 +48,37 @@ namespace OnThisDay.ViewModels.TodayOverview
 
         private async void LoadEvents()
         {
-            foreach (var todayEvent in await _fileEventDataProvider.GetEventsFromFileAsync().ConfigureAwait(false))
+            string ServerAddress = "http://localhost:44360";
+            string TODAYS_EVENTS_ID = "e317e7a4-2afd-4859-b2cc-da707a726e66";
+
+        var channel = GrpcChannel.ForAddress(ServerAddress);
+            var todayEvents = new TodayEvents.Protos.Today.TodayEventClient(channel);
+
+            try
             {
-                App.Current.Dispatcher.Invoke((Action)delegate
+                var request = new GetAllRequest
                 {
-                    TodayEventViewModels.Add(new TodayEventViewModel()
+                    TodaysEventsId = TODAYS_EVENTS_ID
+                };
+                var response = await todayEvents.GetAllAsync(request);
+                foreach (var todayEvent in response.TodayEvents)
+                {
+                    App.Current.Dispatcher.Invoke((Action)delegate
                     {
-                        Name = todayEvent.Name,
-                        Description = todayEvent.Description,
-                        Detail = todayEvent.Detail
+                        TodayEventViewModels.Add(new TodayEventViewModel()
+                        {
+                            Name = todayEvent.Name,
+                            Description = todayEvent.Description,
+                            Detail = todayEvent.Details
+                        });
                     });
-                });
+                }
             }
+            catch (RpcException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
         }
     }
 }
