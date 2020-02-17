@@ -36,9 +36,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OnThisDay.TodayEvents\OnThisDay.TodayEvents.Service.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Protobuf Include="..\OnThisDay.TodayEvents\Protos\todayevents.proto" GrpcServices="Client">
       <Link>Protos\todayevents.proto</Link>
     </Protobuf>

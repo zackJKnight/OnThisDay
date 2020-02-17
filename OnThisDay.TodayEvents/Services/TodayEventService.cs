@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OnThisDay.TodayEvents.Services
 {
-    public class TodayEventService : Protos.TodayEvents.TodayEventsBase
+    public class TodayEventService : Protos.TodayEventsService.TodayEventsServiceBase
     {
         private readonly ITodayEventRepository _repository;
 

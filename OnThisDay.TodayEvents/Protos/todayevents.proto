@@ -25,6 +25,6 @@ message GetAllResponse {
     Today today = 1;
 }
 
-service TodayEvents{
+service TodayEventsService{
     rpc GetAll(GetAllRequest) returns (GetAllResponse);
 }

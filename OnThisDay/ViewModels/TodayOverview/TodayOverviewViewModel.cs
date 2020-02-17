@@ -52,7 +52,7 @@ namespace OnThisDay.ViewModels.TodayOverview
             string TODAYS_EVENTS_ID = "e317e7a4-2afd-4859-b2cc-da707a726e66";
 
         var channel = GrpcChannel.ForAddress(ServerAddress);
-            var todayEvents = new TodayEvents.Protos.TodayEvents.TodayEventsClient(channel);
+            var todayEvents = new TodayEventsService.TodayEventsServiceClient(channel);
 
             try
             {
