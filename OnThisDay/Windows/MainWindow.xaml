@@ -1,12 +1,12 @@
-﻿<Controls:MetroWindow x:Class="OnThisDay.MainWindow"
+﻿<Controls:MetroWindow x:Class="OnThisDay.WPFClient.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:local="clr-namespace:OnThisDay"
-        xmlns:todayOverview="clr-namespace:OnThisDay.UserControls.TodayOverview"
-        xmlns:todayEventDetail="clr-namespace:OnThisDay.UserControls.TodayEventDetail"
+        xmlns:local="clr-namespace:OnThisDay.WPFClient"
+        xmlns:todayOverview="clr-namespace:OnThisDay.WPFClient.UserControls.TodayOverview"
+        xmlns:todayEventDetail="clr-namespace:OnThisDay.WPFClient.UserControls.TodayEventDetail"
         mc:Ignorable="d"
         Title="On This Day" Height="450" Width="800">
     <Grid>

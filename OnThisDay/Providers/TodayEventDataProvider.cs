@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using OnThisDay.Models;
-using OnThisDay.Models.json;
-using OnThisDay.ViewModels.TodayOverview;
+using OnThisDay.WPFClient.Models;
+using OnThisDay.WPFClient.Models.json;
+using OnThisDay.WPFClient.ViewModels.TodayOverview;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnThisDay.Providers
+namespace OnThisDay.WPFClient.Providers
 {
     public class TodayEventDataProvider : IDataProvider
     {

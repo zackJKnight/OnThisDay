@@ -1,11 +1,11 @@
 ﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
-using OnThisDay.Providers;
-using OnThisDay.ViewModels.TodayEventDetail;
-using OnThisDay.ViewModels.TodayEventItem;
-using OnThisDay.ViewModels.TodayOverview;
+using OnThisDay.WPFClient.Providers;
+using OnThisDay.WPFClient.ViewModels.TodayEventDetail;
+using OnThisDay.WPFClient.ViewModels.TodayEventItem;
+using OnThisDay.WPFClient.ViewModels.TodayOverview;
 
-namespace OnThisDay.ViewModels
+namespace OnThisDay.WPFClient.ViewModels
 {
     public class ViewModelLocator
     {

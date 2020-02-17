@@ -1,8 +1,8 @@
-﻿using OnThisDay.Models;
+﻿using OnThisDay.WPFClient.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace OnThisDay.Providers
+namespace OnThisDay.WPFClient.Providers
 {
     public interface IDataProvider
     {

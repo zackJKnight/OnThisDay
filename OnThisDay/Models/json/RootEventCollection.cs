@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using Newtonsoft.Json;
-using OnThisDay.Models.json;
+using OnThisDay.WPFClient.Models.json;
 
-namespace OnThisDay.ViewModels.TodayOverview
+namespace OnThisDay.WPFClient.ViewModels.TodayOverview
 {
     internal class RootEventCollection
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight.Messaging;
 
-namespace OnThisDay.Messaging
+namespace OnThisDay.WPFClient.Messaging
 {
     public class ShowEventDetailMessage : MessageBase
     {

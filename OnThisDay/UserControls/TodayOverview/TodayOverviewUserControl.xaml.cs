@@ -1,5 +1,5 @@
 ﻿
-namespace OnThisDay.UserControls.TodayOverview
+namespace OnThisDay.WPFClient.UserControls.TodayOverview
 {
     public partial class TodayOverviewUserControl
     {

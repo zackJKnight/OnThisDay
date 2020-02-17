@@ -1,15 +1,14 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using OnThisDay.Providers;
-using OnThisDay.ViewModels.TodayEventItem;
+using OnThisDay.WPFClient.Providers;
+using OnThisDay.WPFClient.ViewModels.TodayEventItem;
 using System;
 using System.Collections.ObjectModel;
 using Grpc.Core;
 using Grpc.Net.Client;
-using OnThisDay.TodayEvents.Protos;
 
-namespace OnThisDay.ViewModels.TodayOverview
+namespace OnThisDay.WPFClient.ViewModels.TodayOverview
 {
     public class TodayOverviewViewModel : ViewModelBase
     {
@@ -48,15 +47,15 @@ namespace OnThisDay.ViewModels.TodayOverview
 
         private async void LoadEvents()
         {
-            string ServerAddress = "http://localhost:44360";
+            string ServerAddress = "http://localhost:5000";
             string TODAYS_EVENTS_ID = "e317e7a4-2afd-4859-b2cc-da707a726e66";
 
         var channel = GrpcChannel.ForAddress(ServerAddress);
-            var todayEvents = new TodayEventsService.TodayEventsServiceClient(channel);
+            var todayEvents = new Protos.TodayEventsService.TodayEventsServiceClient(channel);
 
             try
             {
-                var request = new GetAllRequest
+                var request = new Protos.GetAllRequest
                 {
                     TodayEventListId = TODAYS_EVENTS_ID
                 };

@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
-using OnThisDay.Messaging;
-using OnThisDay.Providers;
+using OnThisDay.WPFClient.Messaging;
+using OnThisDay.WPFClient.Providers;
 
-namespace OnThisDay.ViewModels.TodayEventDetail
+namespace OnThisDay.WPFClient.ViewModels.TodayEventDetail
 {
     public class TodayEventDetailViewModel : ViewModelBase
     {

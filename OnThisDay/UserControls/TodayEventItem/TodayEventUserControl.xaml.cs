@@ -1,4 +1,4 @@
-﻿namespace OnThisDay.UserControls.TodayEventItem
+﻿namespace OnThisDay.WPFClient.UserControls.TodayEventItem
 {
     public partial class TodayEventUserControl
     {

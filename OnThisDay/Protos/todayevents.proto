@@ -1,0 +1,30 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "OnThisDay.WPFClient.Protos";
+
+package TodayEventService;
+
+message TodayEvent {
+    int32 id = 1;   
+    string name = 2;
+    string description = 3;
+    string details = 4;
+}
+
+message Today {
+    int32 id = 1;
+    string todayEventListId = 2;
+    repeated TodayEvent todayEvents = 3;
+}
+
+message GetAllRequest {
+    string todayEventListId = 1;
+}
+
+message GetAllResponse {
+    Today today = 1;
+}
+
+service TodayEventsService{
+    rpc GetAll(GetAllRequest) returns (GetAllResponse);
+}

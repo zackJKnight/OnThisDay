@@ -1,5 +1,5 @@
 ﻿
-namespace OnThisDay.UserControls.TodayEventDetail
+namespace OnThisDay.WPFClient.UserControls.TodayEventDetail
 {
     public partial class TodayEventDetailUserControl
     {

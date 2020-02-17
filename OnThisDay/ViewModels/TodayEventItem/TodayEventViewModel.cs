@@ -1,13 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using OnThisDay.Messaging;
+using OnThisDay.WPFClient.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnThisDay.ViewModels.TodayEventItem
+namespace OnThisDay.WPFClient.ViewModels.TodayEventItem
 {
     public class TodayEventViewModel : ViewModelBase
     {

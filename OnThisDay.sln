@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnThisDay", "OnThisDay\OnThisDay.csproj", "{9DAF91B5-26DF-4BE1-BBB7-A96C7A8AC00B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnThisDay.WPFClient", "OnThisDay\OnThisDay.WPFClient.csproj", "{9DAF91B5-26DF-4BE1-BBB7-A96C7A8AC00B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E657F794-508C-4DBF-B68C-B5530314E26F}"
 	ProjectSection(SolutionItems) = preProject
 		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnThisDay.TodayEvents.Service", "OnThisDay.TodayEvents\OnThisDay.TodayEvents.Service.csproj", "{C75E0A51-4EB0-464B-AEBF-5C049920B648}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnThisDay.TodayEvents", "OnThisDay.TodayEvents\OnThisDay.TodayEvents.csproj", "{C75E0A51-4EB0-464B-AEBF-5C049920B648}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnThisDay.TodayEventData", "OnThisDay.TodayEventData\OnThisDay.TodayEventData.csproj", "{F0C505AE-DC02-4BE9-B2E5-CB343AF390BF}"
 EndProject

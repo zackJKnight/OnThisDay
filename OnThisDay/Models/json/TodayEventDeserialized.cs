@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnThisDay.Models.json
+namespace OnThisDay.WPFClient.Models.json
 {
     [JsonObject("todayevendeserialized")]
     public class TodayEventDeserialized : ObservableObject
