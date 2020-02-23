@@ -16,8 +16,21 @@ namespace OnThisDay.WPFClient.ViewModels.TodayOverview
 
         private IDataProvider _fileEventDataProvider;
         private string _title;
+        private bool _dataProviderErrorIsVisible;
+        private string _dataProviderErrorMessage;
+        private object _dataProviderDefaultErrorMessage;
 
-        public string Title {
+        public TodayOverviewViewModel()
+        {
+            Title = "Choose an Event From This Day in History";
+            _dataProviderDefaultErrorMessage = "There's a problem getting the requested data!";
+            _dataProviderErrorIsVisible = false;
+            _fileEventDataProvider = new TodayEventDataProvider();
+            RegisterCommands();
+        }
+
+        public string Title
+        {
             get { return _title; }
             set { Set(() => Title, ref _title, value); }
         }
@@ -28,12 +41,16 @@ namespace OnThisDay.WPFClient.ViewModels.TodayOverview
         }
 
         public RelayCommand LoadEventsCommand { get; set; }
-
-        public TodayOverviewViewModel()
+        public bool DataProviderErrorIsVisible
         {
-            Title = "Choose an Event From This Day in History";
-            _fileEventDataProvider = new TodayEventDataProvider();
-            RegisterCommands();
+            get { return _dataProviderErrorIsVisible; }
+            private set { Set(() => DataProviderErrorIsVisible, ref _dataProviderErrorIsVisible, value); }
+        }
+
+        public string DataProviderErrorMessage
+        {
+            get { return _dataProviderErrorMessage; }
+            private set { Set(() => DataProviderErrorMessage, ref _dataProviderErrorMessage, value);  }
         }
 
         private void RegisterCommands()
@@ -72,7 +89,8 @@ namespace OnThisDay.WPFClient.ViewModels.TodayOverview
             }
             catch (RpcException e)
             {
-                Console.WriteLine(e.ToString());
+                _dataProviderErrorMessage = $"{_dataProviderDefaultErrorMessage}{Environment.NewLine}{e.ToString()}";
+                _dataProviderErrorIsVisible = true;
             }
         }
     }
