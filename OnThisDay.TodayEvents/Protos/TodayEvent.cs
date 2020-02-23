@@ -15,7 +15,7 @@ namespace OnThisDay.TodayEvents.Protos
                 Id = source.Id,
                 Name = source.Name,
                 Description = source.Description,
-                Details = source.Details
+                Detail = source.Detail
             };
         }
     }

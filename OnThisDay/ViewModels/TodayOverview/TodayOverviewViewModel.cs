@@ -77,13 +77,13 @@ namespace OnThisDay.WPFClient.ViewModels.TodayOverview
                     TodayEventListId = TODAYS_EVENTS_ID
                 };
                 var response = await todayEvents.GetAllAsync(request);
-                foreach (var todayEvent in response.Today.TodayEvents)
+                foreach (var todayEvent in response.TodayEvents)
                 {
                     TodayEventViewModels.Add(new TodayEventViewModel()
                     {
                         Name = todayEvent.Name,
                         Description = todayEvent.Description,
-                        Detail = todayEvent.Details
+                        Detail = todayEvent.Detail
                     });
                 }
             }

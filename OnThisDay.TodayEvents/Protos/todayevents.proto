@@ -8,7 +8,7 @@ message TodayEvent {
     int32 id = 1;   
     string name = 2;
     string description = 3;
-    string details = 4;
+    string detail = 4;
 }
 
 message Today {
@@ -22,7 +22,7 @@ message GetAllRequest {
 }
 
 message GetAllResponse {
-    Today today = 1;
+    repeated TodayEvent todayEvents = 1;
 }
 
 service TodayEventsService{
