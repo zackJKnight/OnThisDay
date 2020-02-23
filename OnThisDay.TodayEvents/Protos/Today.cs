@@ -16,19 +16,10 @@ namespace OnThisDay.TodayEvents.Protos
 
             {
                 Id = source.Id,
-                TodayEventListId = source.TodayEventListId.ToString()
+                TodayEventListId = source.TodayEventListId.ToString(),
             };
 
-            source.TodayEventList.ToList()
-.ForEach(item => target.TodayEvents.Add(new TodayEvent
-{
-    Id = item.Id,
-    Name = item.Name,
-    Description = item.Description,
-    Details = item.Details
-}))
-;
-
+            target.TodayEvents.AddRange(source.TodayEventList.Select(TodayEvent.FromRepositoryModel));
             return target;
         }
     }

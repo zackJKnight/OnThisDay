@@ -47,7 +47,7 @@ namespace OnThisDay.WPFClient.ViewModels.TodayOverview
 
         private async void LoadEvents()
         {
-            string ServerAddress = "http://localhost:44360";
+            string ServerAddress = "https://localhost:5001";
             string TODAYS_EVENTS_ID = "e317e7a4-2afd-4859-b2cc-da707a726e66";
 
             var channel = GrpcChannel.ForAddress(ServerAddress);
@@ -70,8 +70,6 @@ namespace OnThisDay.WPFClient.ViewModels.TodayOverview
                     });
                 }
             }
-
-
             catch (RpcException e)
             {
                 Console.WriteLine(e.ToString());

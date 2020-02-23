@@ -1,0 +1,34 @@
+{
+  "events": [
+    {
+      "name": "Wall",
+      "description": "A barrier.",
+      "detail": "Get a ladder."
+    },
+    {
+      "name": "Box",
+      "description": "Cardboard",
+      "detail": "Made from trees."
+    },
+    {
+      "name": "Flood",
+      "description": "Lots of water",
+      "detail": "Could be good for Ag."
+    },
+    {
+      "name": "Hurricane",
+      "description": "Wind and rain.",
+      "detail": "Bottled water and canned food."
+    },
+    {
+      "name": "Election Day",
+      "description": "Cast ballot",
+      "detail": "Pick a winner."
+    },
+    {
+      "name": "Pompeii",
+      "description": "Big Eruption",
+      "detail": "Volcano ash caught em all."
+    }
+  ]
+}
