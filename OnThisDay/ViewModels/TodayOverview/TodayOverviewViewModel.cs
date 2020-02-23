@@ -1,12 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using OnThisDay.WPFClient.Providers;
 using OnThisDay.WPFClient.ViewModels.TodayEventItem;
 using System;
 using System.Collections.ObjectModel;
 using Grpc.Core;
 using Grpc.Net.Client;
+using OnThisDay.TodayEvents.Protos;
 
 namespace OnThisDay.WPFClient.ViewModels.TodayOverview
 {
@@ -47,37 +47,35 @@ namespace OnThisDay.WPFClient.ViewModels.TodayOverview
 
         private async void LoadEvents()
         {
-            string ServerAddress = "http://localhost:5000";
+            string ServerAddress = "http://localhost:44360";
             string TODAYS_EVENTS_ID = "e317e7a4-2afd-4859-b2cc-da707a726e66";
 
-        var channel = GrpcChannel.ForAddress(ServerAddress);
-            var todayEvents = new Protos.TodayEventsService.TodayEventsServiceClient(channel);
+            var channel = GrpcChannel.ForAddress(ServerAddress);
+            var todayEvents = new TodayEventsService.TodayEventsServiceClient(channel);
 
             try
             {
-                var request = new Protos.GetAllRequest
+                var request = new GetAllRequest
                 {
                     TodayEventListId = TODAYS_EVENTS_ID
                 };
                 var response = await todayEvents.GetAllAsync(request);
                 foreach (var todayEvent in response.Today.TodayEvents)
                 {
-                    App.Current.Dispatcher.Invoke((Action)delegate
+                    TodayEventViewModels.Add(new TodayEventViewModel()
                     {
-                        TodayEventViewModels.Add(new TodayEventViewModel()
-                        {
-                            Name = todayEvent.Name,
-                            Description = todayEvent.Description,
-                            Detail = todayEvent.Details
-                        });
+                        Name = todayEvent.Name,
+                        Description = todayEvent.Description,
+                        Detail = todayEvent.Details
                     });
                 }
             }
+
+
             catch (RpcException e)
             {
                 Console.WriteLine(e.ToString());
             }
-
         }
     }
 }
