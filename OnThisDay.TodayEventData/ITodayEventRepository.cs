@@ -10,7 +10,7 @@ namespace OnThisDay.TodayEventData
     {
         Task<TodayEvent> GetTodayEventByNameAsync(string name);
 
-        Task<Today> GetEventsFromFileAsync(string todayEventListId);
+        Task<Today> GetEventsFromFileAsync();
 
     }
 }

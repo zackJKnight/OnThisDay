@@ -8,13 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\MockEvents.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <None Remove="Providers\Dto\TodayEvent.tt" />
+    <None Remove="Providers\Dto\TodayEvent.txt" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
+    <PackageReference Include="DTOGenerator" Version="1.0.0" />
     <PackageReference Include="Grpc" Version="2.27.0" />
     <PackageReference Include="Grpc.Net.Client" Version="2.27.0" />
     <PackageReference Include="Grpc.Net.Common" Version="2.27.0" />
@@ -38,5 +38,8 @@
       <Private>true</Private>
       <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 </Project>

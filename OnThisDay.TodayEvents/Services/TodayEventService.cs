@@ -19,10 +19,9 @@ namespace OnThisDay.TodayEvents.Services
             _repository = repository;
         }
 
-       // [Authorize]
         public override async Task<GetAllResponse> GetAll(GetAllRequest request, ServerCallContext context)
         {
-            var today = await _repository.GetEventsFromFileAsync(request.TodayEventListId);
+            var today = await _repository.GetEventsFromFileAsync();
 
             var response = new GetAllResponse();
             

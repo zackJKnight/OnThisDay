@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using Grpc.Core;
 using Grpc.Net.Client;
 using OnThisDay.TodayEvents.Protos;
+using System.Threading.Tasks;
 
 namespace OnThisDay.WPFClient.ViewModels.TodayOverview
 {
@@ -64,34 +65,29 @@ namespace OnThisDay.WPFClient.ViewModels.TodayOverview
 
         private async void LoadEvents()
         {
-            string ServerAddress = "https://localhost:5001";
-            string TODAYS_EVENTS_ID = "e317e7a4-2afd-4859-b2cc-da707a726e66";
-
-            var channel = GrpcChannel.ForAddress(ServerAddress);
-            var todayEvents = new TodayEventsService.TodayEventsServiceClient(channel);
-
             try
             {
-                var request = new GetAllRequest
+                var loadedEvents = await _fileEventDataProvider.GetEventsFromFileAsync().ConfigureAwait(false);
+
+                foreach (var todayEvent in loadedEvents)
                 {
-                    TodayEventListId = TODAYS_EVENTS_ID
-                };
-                var response = await todayEvents.GetAllAsync(request);
-                foreach (var todayEvent in response.TodayEvents)
-                {
-                    TodayEventViewModels.Add(new TodayEventViewModel()
+                    System.Windows.Application.Current.Dispatcher.Invoke(delegate
                     {
-                        Name = todayEvent.Name,
-                        Description = todayEvent.Description,
-                        Detail = todayEvent.Detail
+                        TodayEventViewModels.Add(new TodayEventViewModel
+                        {
+
+                            Description = todayEvent.Description,
+                            Detail = todayEvent.Detail,
+                            Name = todayEvent.Name
+                        });
                     });
                 }
             }
-            catch (RpcException e)
+            catch(NullReferenceException nullEx)
             {
-                _dataProviderErrorMessage = $"{_dataProviderDefaultErrorMessage}{Environment.NewLine}{e.ToString()}";
-                _dataProviderErrorIsVisible = true;
+                Console.WriteLine(nullEx.Message);
             }
+            //await Task.Run(() => _fileEventDataProvider.GetTodayEventByName("")).ConfigureAwait(true);
         }
     }
 }

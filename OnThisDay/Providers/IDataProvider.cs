@@ -1,4 +1,5 @@
-﻿using OnThisDay.WPFClient.Models;
+﻿
+using OnThisDay.WPFClient.Providers.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,9 +7,9 @@ namespace OnThisDay.WPFClient.Providers
 {
     public interface IDataProvider
     {
-        //Task<TodayEvent> GetTodayEventByName(string name);
+        Task<TodayEventLookup> GetTodayEventByName(string name);
 
-        //Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync();
+        Task<IEnumerable<TodayEventLookup>> GetEventsFromFileAsync();
 
     }
 }

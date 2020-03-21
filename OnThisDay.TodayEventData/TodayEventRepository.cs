@@ -22,12 +22,12 @@ namespace OnThisDay.TodayEventData
         {
             if (!Today.TodayEventList.Any())
             {
-                await GetEventsFromFileAsync(name).ConfigureAwait(false);
+                await GetEventsFromFileAsync().ConfigureAwait(false);
             }
             return Today.TodayEventList.Where(todayEvent => todayEvent.Name == name).FirstOrDefault();
         }
 
-        public async Task<Today> GetEventsFromFileAsync(string todayEventListId)
+        public async Task<Today> GetEventsFromFileAsync()
         {
             var deserializedJsonEvents = await Task.Run(() =>
             {

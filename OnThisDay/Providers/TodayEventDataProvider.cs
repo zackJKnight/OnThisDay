@@ -1,59 +1,65 @@
-﻿using Newtonsoft.Json;
-using OnThisDay.WPFClient.Models;
-using OnThisDay.WPFClient.Models.json;
-using OnThisDay.WPFClient.ViewModels.TodayOverview;
+﻿using Grpc.Core;
+using Grpc.Net.Client;
+using OnThisDay.TodayEvents.Protos;
+using OnThisDay.WPFClient.Providers.Dto;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace OnThisDay.WPFClient.Providers
 {
     public class TodayEventDataProvider : IDataProvider
     {
-        //    private const string DATA_FILE = @"./Resources/MockEvents.json";
+        private string _dataProviderErrorMessage;
+        private bool _dataProviderErrorIsVisible;
+        private object _dataProviderDefaultErrorMessage;
 
-        //    public List<TodayEvent> TodayEvents { get; }
+        public List<TodayEventLookup> TodayEventLookups { get; }
 
-        //    public TodayEventDataProvider()
-        //    {
-        //        TodayEvents = new List<TodayEvent>();
-        //    }
+        public TodayEventDataProvider()
+        {
+            TodayEventLookups = new List<TodayEventLookup>();
+        }
 
-        //    public async Task<TodayEvent> GetTodayEventByName(string name)
-        //    {
-        //        if (!TodayEvents.Any())
-        //        {
-        //            await GetEventsFromFileAsync().ConfigureAwait(false);
-        //        }
-        //        return TodayEvents.Where(todayEvent => todayEvent.Name == name).FirstOrDefault();
-        //    }
+        public async Task<TodayEventLookup> GetTodayEventByName(string name)
+        {
+            if (!TodayEventLookups.Any())
+            {
+                TodayEventLookups.AddRange(await this.GetEventsFromFileAsync().ConfigureAwait(false));
+            }
+            return TodayEventLookups.Where(todayEvent => todayEvent.Name == name).FirstOrDefault();
+        }
+        public async Task<IEnumerable<TodayEventLookup>> GetEventsFromFileAsync()
+        {
+            string ServerAddress = "https://localhost:5001";
 
-        //    public async Task<IEnumerable<TodayEvent>> GetEventsFromFileAsync()
-        //    {
-        //        var deserializedJsonEvents = await Task.Run(() =>
-        //         {
-        //             using (StreamReader reader = File.OpenText(DATA_FILE))
-        //             {
-        //                 string json = reader.ReadToEnd();
-        //                 return JsonConvert.DeserializeObject<RootEventCollection>(json);
-        //             }
-        //         }).ConfigureAwait(false);
+            var channel = GrpcChannel.ForAddress(ServerAddress);
+            var todayEvents = new TodayEventsService.TodayEventsServiceClient(channel);
 
-        //        foreach (var deserializedEvent in deserializedJsonEvents.Events)
-        //        {
-        //            TodayEvents.Add(
-        //                new TodayEvent()
-        //                {
-        //                    Name = deserializedEvent.Name,
-        //                    Description = deserializedEvent.Description,
-        //                    Detail = deserializedEvent.Detail
-        //                });
-        //        }
+            try
+            {
+                var request = new GetAllRequest();
+                var response = await todayEvents.GetAllAsync(request);
+                foreach (var todayEvent in response.TodayEvents)
+                {
+                    TodayEventLookups.Add(new TodayEventLookup()
+                    {
+                        Name = todayEvent.Name,
+                        Description = todayEvent.Description,
+                        Detail = todayEvent.Detail
+                    });
+                }
+            }
+            catch (RpcException e)
+            {
+                _dataProviderErrorMessage = $"{_dataProviderDefaultErrorMessage}{Environment.NewLine}{e.ToString()}";
+                _dataProviderErrorIsVisible = true;
+            }
 
-        //        return TodayEvents;
-        //    }
+            return TodayEventLookups; 
+        }
+
+
     }
 }
