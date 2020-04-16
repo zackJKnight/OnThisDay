@@ -27,13 +27,8 @@ namespace OnThisDay.TodayEvents
         {
             services.AddScoped<ITodayEventRepository, TodayEventRepository>();
             services.AddGrpc();
+            services.AddHttpClient();
         }
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -51,6 +46,7 @@ namespace OnThisDay.TodayEvents
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<TodayEventService>();
+                endpoints.MapGrpcService<HeadlineService>();
             });
         }
     }

@@ -23,9 +23,9 @@ namespace OnThisDay.TodayEvents.Services
 
         }
 
-        public async override Task<DownloadResponse> DownloadHeadlinesAsync(DownloadRequest request, ServerCallContext context)
+        public override async Task<DownloadResponse> DownloadHeadlines(DownloadRequest request, ServerCallContext context)
         {
-            int articlesFromYear = 1980;
+            int articlesFromYear = request.Year;
             var currentMonth = DateTime.Now.Month.ToString();
 
             var webRequest = await httpClient.GetAsync($"https://api.nytimes.com/svc/archive/v1/{articlesFromYear}/{currentMonth}.json?api-key={Startup.NytApiKey}");

@@ -1,0 +1,21 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "OnThisDay.TodayEvents.Protos";
+
+package HeadlineService;
+
+message Headline {
+    string main = 1;
+    string pubdate = 2;
+}
+
+message DownloadRequest {
+    int32 year = 1;
+}
+
+message DownloadResponse {
+    repeated Headline headlines = 1;
+}
+service HeadlineService {
+    rpc DownloadHeadlines(DownloadRequest) returns (DownloadResponse);
+}

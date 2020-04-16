@@ -59,7 +59,5 @@ namespace OnThisDay.WPFClient.Providers
 
             return TodayEventLookups; 
         }
-
-
     }
 }

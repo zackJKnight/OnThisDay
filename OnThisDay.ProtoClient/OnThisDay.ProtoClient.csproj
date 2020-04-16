@@ -18,6 +18,9 @@
     </PackageReference>
     </ItemGroup>
   <ItemGroup>
+    <Protobuf Include="..\OnThisDay.TodayEvents\Protos\headlines.proto" GrpcServices="Client">
+      <Link>headlines.proto</Link>
+    </Protobuf>
     <Protobuf Include="..\OnThisDay.TodayEvents\Protos\todayevents.proto" GrpcServices="Client">
       <Link>Protos\todayevents.proto</Link>
     </Protobuf>
