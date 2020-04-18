@@ -1,13 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>2d0a6f22-3443-42db-ab68-1ecbcf98fc6b</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
     <Content Remove="Resources\MockEvents.json" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Remove="Protos\headlines.proto" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\MockEvents.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -20,13 +22,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\OnThisDay.TodayEventData\OnThisDay.TodayEventData.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Protobuf Include="Protos\todayevents.proto" GrpcServices="Server" />
   </ItemGroup>
-
 </Project>
