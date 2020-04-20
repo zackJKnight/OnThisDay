@@ -23,7 +23,7 @@ namespace OnThisDay.WPFClient
     {
         public MainWindow()
         {
-            Environment.SetEnvironmentVariable("HEADLINE_SERVER_ADDRESS", "https://localhost:5001");
+            Environment.SetEnvironmentVariable("SERVER_ADDRESS", "https://localhost:5001");
 
             InitializeComponent();
         }

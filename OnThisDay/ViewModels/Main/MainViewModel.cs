@@ -32,7 +32,7 @@ namespace OnThisDay.WPFClient.ViewModels.Main
 
         private static async void DownloadHeadlinesAsync()
         {
-            string ServerAddress = Environment.GetEnvironmentVariable("HEADLINE_SERVER_ADDRESS");
+            string ServerAddress = Environment.GetEnvironmentVariable("SERVER_ADDRESS");
 
             var channel = GrpcChannel.ForAddress(ServerAddress);
             var headlineClient = new HeadlineService.HeadlineServiceClient(channel);
@@ -41,14 +41,13 @@ namespace OnThisDay.WPFClient.ViewModels.Main
             {
                 var request = new DownloadRequest();
                 request.Year = _selectedYear;
-                // why can't I add await here?
+
                 var response = await headlineClient.DownloadHeadlinesAsync(request);
-                //Console.WriteLine(response.ToString());
+
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex);
-                //throw;
+                throw;
             }
         }
     }

@@ -32,7 +32,7 @@ namespace OnThisDay.WPFClient.Providers
         }
         public async Task<IEnumerable<TodayEventLookup>> GetEventsFromFileAsync()
         {
-            string ServerAddress = "https://localhost:5001";
+            string ServerAddress = Environment.GetEnvironmentVariable("SERVER_ADDRESS");
 
             var channel = GrpcChannel.ForAddress(ServerAddress);
             var todayEvents = new TodayEventsService.TodayEventsServiceClient(channel);
