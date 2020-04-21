@@ -26,7 +26,7 @@
         <TextBlock Text="{Binding Name, Mode=OneWay}" FontWeight="DemiBold" Margin="5,0,0,5" Grid.Column="1" 
                    Grid.Row="1" FontSize="14" Foreground="#3c4c55" />
         <TextBlock Text="{Binding Description, Mode=OneWay}" Margin="5,0,0,5" Grid.Column="1" Grid.Row="2" FontSize="14"
-                       Foreground="#3c4c55" />
+                       Foreground="#3c4c55" TextWrapping="Wrap" />
         <TextBlock Text="{Binding Detail, Mode=OneWay}" Margin="5,0,0,5" Grid.Column="1" Grid.Row="3" FontSize="14"
                        Foreground="#3c4c55" />
     </Grid>

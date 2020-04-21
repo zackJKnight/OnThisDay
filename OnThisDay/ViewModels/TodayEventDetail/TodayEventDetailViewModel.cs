@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 using OnThisDay.WPFClient.Messaging;
 using OnThisDay.WPFClient.Providers;
@@ -34,7 +35,7 @@ namespace OnThisDay.WPFClient.ViewModels.TodayEventDetail
         {
             Description = string.Empty;
 
-            TodayEventDataProvider = new TodayEventDataProvider();
+            TodayEventDataProvider = SimpleIoc.Default.GetInstance<IDataProvider>();
             RegisterMessages();
         }
 

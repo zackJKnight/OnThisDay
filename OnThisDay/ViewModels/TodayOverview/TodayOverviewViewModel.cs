@@ -8,6 +8,7 @@ using Grpc.Core;
 using Grpc.Net.Client;
 using OnThisDay.TodayEvents.Protos;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace OnThisDay.WPFClient.ViewModels.TodayOverview
 {
@@ -26,7 +27,7 @@ namespace OnThisDay.WPFClient.ViewModels.TodayOverview
             Title = "Choose an Event From This Day in History";
             _dataProviderDefaultErrorMessage = "There's a problem getting the requested data!";
             _dataProviderErrorIsVisible = false;
-            _fileEventDataProvider = new TodayEventDataProvider();
+            _fileEventDataProvider = SimpleIoc.Default.GetInstance<IDataProvider>();
             RegisterCommands();
         }
 
@@ -88,7 +89,6 @@ namespace OnThisDay.WPFClient.ViewModels.TodayOverview
             {
                 Console.WriteLine(nullEx.Message);
             }
-            //await Task.Run(() => _fileEventDataProvider.GetTodayEventByName("")).ConfigureAwait(true);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace OnThisDay.WPFClient.Providers
         private string _dataProviderErrorMessage;
         private bool _dataProviderErrorIsVisible;
         private object _dataProviderDefaultErrorMessage;
+        private int HEADLINE_TRUNCATION_LIMIT = 35;
 
         public List<TodayEventLookup> TodayEventLookups { get; }
 
@@ -77,20 +78,21 @@ namespace OnThisDay.WPFClient.Providers
                 var response = await headlineClient.DownloadHeadlinesAsync(request);
                 foreach (var headline in response.Headlines)
                 {
-                    result.Add(new TodayEventLookup
+                    TodayEventLookups.Add(new TodayEventLookup
                     {
-                        Name = $"{headline.Main.Truncate(15)}...",
+                        Name = $"{headline.Main.Truncate(HEADLINE_TRUNCATION_LIMIT)}...",
                         Description = headline.Main,
                         Detail = headline.Pubdate,
                         Id = new Random().Next(0, int.MaxValue)
                     });
                 }
             }
-            catch
+            catch(RpcException e)
             {
-                throw;
+                _dataProviderErrorMessage = $"{_dataProviderDefaultErrorMessage}{Environment.NewLine}{e.ToString()}";
+                _dataProviderErrorIsVisible = true;
             }
-            return result;
+            return TodayEventLookups;
             
         }
     }

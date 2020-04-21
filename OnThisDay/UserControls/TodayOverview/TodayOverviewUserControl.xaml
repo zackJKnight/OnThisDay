@@ -39,7 +39,8 @@
                    TextWrapping="Wrap"
                    MaxWidth="650"
                    Visibility="{Binding DataProviderErrorIsVisible, Converter={StaticResource BooleanToVisibility}}"></TextBlock>
-        <ItemsControl x:Name="tStack" ItemsSource="{Binding TodayEventViewModels}" Grid.Column="1" Grid.Row="2">
+        <ScrollViewer Grid.Column="1" Grid.Row="2">
+        <ItemsControl x:Name="tStack" ItemsSource="{Binding TodayEventViewModels}" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical">
@@ -52,6 +53,7 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        </ScrollViewer>
     </Grid>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
