@@ -11,5 +11,7 @@ namespace OnThisDay.WPFClient.Providers
 
         Task<IEnumerable<TodayEventLookup>> GetEventsFromFileAsync();
 
+        Task<IEnumerable<TodayEventLookup>> DownloadHeadlinesAsync(int selectedYear);
+
     }
 }

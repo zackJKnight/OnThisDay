@@ -67,7 +67,8 @@ namespace OnThisDay.WPFClient.ViewModels.TodayOverview
         {
             try
             {
-                var loadedEvents = await _fileEventDataProvider.GetEventsFromFileAsync().ConfigureAwait(false);
+//                var loadedEvents = await _fileEventDataProvider.GetEventsFromFileAsync().ConfigureAwait(false);
+                var loadedEvents = await _fileEventDataProvider.DownloadHeadlinesAsync(1980).ConfigureAwait(false);
 
                 foreach (var todayEvent in loadedEvents)
                 {

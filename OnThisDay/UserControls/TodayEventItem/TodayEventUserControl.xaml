@@ -19,9 +19,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" Margin="3" Grid.Column="0"/>
-            <TextBlock Text=" - " HorizontalAlignment="Left" Grid.Column="1" Margin="3"/>
-            <TextBlock Text="{Binding Description}" HorizontalAlignment="Left" Margin="3" Grid.Column="2"/>
-
+            <!--<TextBlock Text=" - " HorizontalAlignment="Left" Grid.Column="1" Margin="3"/>
+            <TextBlock Text="{Binding Description}" HorizontalAlignment="Left" Margin="3" Grid.Column="2"/>-->
         </Grid>
     </Button>
 </UserControl>
