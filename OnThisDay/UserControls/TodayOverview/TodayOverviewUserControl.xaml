@@ -26,7 +26,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="450"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding Title}" Margin="5,0,0,10" FontWeight="Bold" Grid.Column="1" Grid.Row="1" FontSize="14"
@@ -39,15 +39,9 @@
                    TextWrapping="Wrap"
                    MaxWidth="650"
                    Visibility="{Binding DataProviderErrorIsVisible, Converter={StaticResource BooleanToVisibility}}"></TextBlock>
-        <ScrollViewer Grid.Column="1" Grid.Row="2">
-        <ItemsControl x:Name="tStack" ItemsSource="{Binding TodayEventViewModels}" >
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical">
-                    </StackPanel>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
+        <ScrollViewer Grid.Row="2" Grid.Column="1" CanContentScroll="True" VerticalScrollBarVisibility="Auto" >
+            <ItemsControl x:Name="tStack" ItemsSource="{Binding TodayEventViewModels}" >
+                <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <todayevent:TodayEventUserControl/>
                 </DataTemplate>
