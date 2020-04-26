@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="NewsIcon.png" />
     <None Remove="Providers\Dto\TodayEvent.tt" />
     <None Remove="Providers\Dto\TodayEvent.txt" />
   </ItemGroup>
@@ -32,6 +33,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="ModernWpfUI" Version="0.8.3" />
     <PackageReference Include="MvvmLight" Version="5.4.1.1" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -44,5 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="NewsIcon.png" />
   </ItemGroup>
 </Project>
